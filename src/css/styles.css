@@ -1,3 +1,7 @@
+:root {
+  --timing-function: cubic-bezier(0.2, 0, 0.1, 1);
+  --animation-duration: 250ms;
+}
 * {
   box-sizing: border-box;
 }
@@ -11,3 +15,101 @@ body {
   color: #212121;
   line-height: 1.5;
 }
+.gallery {
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin: 40px 50px;
+  display: flex;
+}
+.gallery-id {
+  object-fit: cover;
+  overflow: hidden;
+}
+.gallery__item {
+  position: relative;
+  display: block;
+  flex-basis: calc(100% / 4 - 20px);
+  justify-content: center;
+  border-width: 1px;
+  border-color: gray;
+  border-radius: 20px;
+  text-decoration: none;
+  height: 100%;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.15),
+        0px 1px 1px 0px rgba(0, 0, 0, 0.1), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+  transition: transform var(--animation-duration) var(--timing-function);
+  overflow: hidden;
+
+}
+
+.gallery__img {
+  width: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  height: 250px;
+  max-height: 100%;
+  border-radius: 4px 4px 0 0;
+    
+}
+.gallery__img:hover {
+  transform: scale(1.03);
+}
+.info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 5px;
+  gap: 10px;
+  text-align: center;
+  font-size: 12px;
+}
+.info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: black;
+}
+.info-item:not(:first-child) {
+  margin-left: 5px;
+}
+.info-img {
+  display: flex;
+    align-items: center;
+  color: black;
+}
+.info-img > span {
+  font-weight: 700;
+  margin-right: 5px;
+}
+.search-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+.search-input {
+  width: 250px;
+  height: 40px;
+  border: 1px solid #212121;
+  border-radius: 4px;
+}
+button {
+  border: none;
+    border-radius: 3px;
+    width: 100px;
+    height: 40px;
+    text-align: center;
+}
+button:hover,
+button:focus {
+  border: 1px solid #212121;
+  background-color: #C0C0C0;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.load-more.is-hidden {
+  display: none;
+} 
+

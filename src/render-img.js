@@ -23,26 +23,26 @@ function renderGallery(images) {
         downloads,
       } = image;
 
-      return `<a class="gallery-link" href="${largeImageURL}" width="800" height="600">
+      return `<a class="gallery__item" href="${largeImageURL}" >
   <div class="gallery-id" id="${id}">
     <img
-      class="gallery-img"
+      class="gallery__img"
       src="${webformatURL}"
       alt="${tags}"
       loading="lazy"
     />
     <div class="info">
       <p class="info-img">
-        <span>Likes</span>${likes}
+        <span>Likes:</span>${likes}
       </p>
       <p class="info-img">
-        <span>Views</span>${views}
+        <span>Views:</span>${views}
       </p>
       <p class="info-img">
-        <span>Comments</span>${comments}
+        <span>Comments:</span>${comments}
       </p>
       <p class="info-img">
-        <span>Downloads</span>${downloads}
+        <span>Downloads:</span>${downloads}
       </p>
     </div>
   </div>
@@ -55,3 +55,4 @@ function renderGallery(images) {
 
   let simpleLightbox = new SimpleLightbox('.gallery a').refresh();
 }
+export { renderGallery };
