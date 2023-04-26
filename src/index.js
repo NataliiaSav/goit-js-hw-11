@@ -8,15 +8,19 @@ import { renderGallery } from './render-img';
 const searchForm = document.querySelector('#search-form');
 const buttonLoadMore = document.querySelector('.load-more');
 
+buttonLoadMore.classList.add('is-hidden');
+
 searchForm.addEventListener('submit', onFormSubmit);
 buttonLoadMore.addEventListener('click', onBtnLoad);
+
+let lightbox;
+let query = '';
+let page = 1;
+const perPage = 40;
 function onFormSubmit(e) {
   e.preventDefault();
-  let lightbox;
-  let page = 1;
-  const perPage = 40;
+
   query = e.currentTarget.searchQuery.value.trim();
-  buttonLoadMore.classList.add('is-hidden');
 
   if (query === '') {
     Notify.failure(
@@ -44,12 +48,12 @@ function onFormSubmit(e) {
 
 function onBtnLoad() {
   page += 1;
-  simpleLightBox.destroy();
+  lightBox.destroy();
 
   fetchImages(query, page, perPage)
     .then(({ data }) => {
       renderGallery(data.hits);
-      simpleLightBox = new SimpleLightbox('.gallery a').refresh();
+      lightBox = new SimpleLightbox('.gallery a').refresh();
 
       const totalPages = Math.ceil(data.totalHits / perPage);
 
