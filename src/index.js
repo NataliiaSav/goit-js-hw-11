@@ -7,17 +7,22 @@ import { renderGallery } from './render-img';
 
 const searchForm = document.querySelector('#search-form');
 const buttonLoadMore = document.querySelector('.load-more');
+const gallery = document.querySelector('.gallery');
 
 buttonLoadMore.classList.add('is-hidden');
 
 searchForm.addEventListener('submit', onFormSubmit);
 buttonLoadMore.addEventListener('click', onBtnLoad);
+
 let lightbox = new SimpleLightbox('.gallery a');
 let query = '';
 let page = 1;
 const perPage = 40;
+
 function onFormSubmit(e) {
   e.preventDefault();
+  page = 1;
+  gallery.innerHTML = '';
   query = e.currentTarget.searchQuery.value.trim();
   if (query === '') {
     Notify.failure(
@@ -47,7 +52,6 @@ function onFormSubmit(e) {
 
 function onBtnLoad() {
   page += 1;
-
   fetchImages(query, page, perPage)
     .then(({ data }) => {
       renderGallery(data.hits);

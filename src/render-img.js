@@ -1,19 +1,9 @@
-// <!-- webformatURL - посилання на маленьке зображення для списку карток.
-// largeImageURL - посилання на велике зображення.
-// tags - рядок з описом зображення. Підійде для атрибуту alt.
-// likes - кількість лайків.
-// views - кількість переглядів.
-// comments - кількість коментарів.
-// downloads -кількість завантажень.-->
-import SimpleLightbox from 'simplelightbox';
-import 'simplelightbox/dist/simple-lightbox.min.css';
 const gallery = document.querySelector('.gallery');
 
 function renderGallery(images) {
   const markup = images
     .map(image => {
       const {
-        id,
         largeImageURL,
         webformatURL,
         tags,
@@ -23,25 +13,25 @@ function renderGallery(images) {
         downloads,
       } = image;
 
-      return `<a class="gallery__item" href="${largeImageURL}" >
-  <div class="gallery-id" id="${id}">
+      return `<a class="gallery-item" href="${largeImageURL}" >
+  <div class="gallery-item-img">
     <img
-      class="gallery__img"
+      class="gallery-img"
       src="${webformatURL}"
       alt="${tags}"
       loading="lazy"
     />
     <div class="info">
-      <p class="info-img">
+      <p class="info-item">
         <span>Likes:</span>${likes}
       </p>
-      <p class="info-img">
+      <p class="info-item">
         <span>Views:</span>${views}
       </p>
-      <p class="info-img">
+      <p class="info-item">
         <span>Comments:</span>${comments}
       </p>
-      <p class="info-img">
+      <p class="info-item">
         <span>Downloads:</span>${downloads}
       </p>
     </div>
@@ -52,7 +42,5 @@ function renderGallery(images) {
 
   // console.log(markup);
   gallery.insertAdjacentHTML('beforeend', markup);
-
-  let simpleLightbox = new SimpleLightbox('.gallery a').refresh();
 }
 export { renderGallery };
